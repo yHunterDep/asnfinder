@@ -1,14 +1,19 @@
-# asnfinder
-asnfinder é um script em python que busca por asns
+# ASNFinder
+ASNFinder é uma Ferramenta escrita em Python3 que busca por ASNS e IPS de uma organização
 
-# instalação
+# Versão
+```sh
+0.2
+```
+
+# Instalação
 ```sh
 git clone https://github.com/yHunterDep/asnfinder
 cd asnfinder
 pip3 install -r requirements.txt
 chmod +x asnfinder
 ```
-# help do ASNfinder
+# Help do ASNfinder
 ```sh
 ./asnfinder -h
 
@@ -34,5 +39,5 @@ usage: asnfinder [-h] -o ORG [-A USER_AGENT]
 # pegando asns e ips
 ```sh
 ./asnfinder -o yahoo -asns
-./asns -o yahoo -ips
+./asnfinder -o yahoo -ips
 ```

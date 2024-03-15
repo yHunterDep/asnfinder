@@ -13,12 +13,16 @@ chmod +x asnfinder
 ./asnfinder -h
 
 usage: asnfinder [-h] -o ORG [-A USER_AGENT]
-
-options:
-  -h, --help            show this help message and exit
-  -o ORG, --org ORG     organização, ex: --org yahoo
+                 [-asns] [-ips]                                                                     options:
+  -h, --help            show this help message
+                        and exit
+  -o ORG, --org ORG     organização, ex: --org                            yahoo
   -A USER_AGENT, --user_agent USER_AGENT
-                        coloque o user-agent (não obrigatório)
+                        coloque o user-agent
+                        (não obrigatório)
+  -asns, --asns         o ASNFinder vai trazer                            apenas os ASNS
+  -ips, --ips           o ASNFinder irá trazer
+                        apenas os IPs
 ```
 
 # usando o ASNfinder

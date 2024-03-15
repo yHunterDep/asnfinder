@@ -36,7 +36,7 @@ usage: asnfinder [-h] -o ORG [-A USER_AGENT]
 ./asnfinder -o yahoo -A 'Mozilla/5.0'
 ```
 
-# pegando asns e ips
+# pegando ASNs e IPs
 ```sh
 ./asnfinder -o yahoo -asns
 ./asnfinder -o yahoo -ips

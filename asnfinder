@@ -5,6 +5,8 @@ import argparse, requests, re
 parser = argparse.ArgumentParser()
 parser.add_argument("-o", "--org", required=True, help="organização, ex: --org yahoo")
 parser.add_argument("-A", "--user_agent", help="coloque o user-agent (não obrigatório)")
+parser.add_argument("-asns", "--asns", help="o ASNFinder vai trazer apenas os ASNS", action="store_true")
+parser.add_argument("-ips", "--ips", help="o ASNFinder irá trazer apenas os IPs", action="store_true")
 args = parser.parse_args()
 
 org = args.org
@@ -26,5 +28,11 @@ asns = re.findall(regex_as, req)
 asns = "\n".join(asns)
 ips = re.findall(regex_ips, req)
 ips = "\n".join(ips)
-print(asns)
-print(ips)
+
+if args.asns:
+        print(asns)
+elif args.ips:
+        print(ips)
+else:
+        print(asns)
+        print(ips)

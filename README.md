@@ -30,3 +30,9 @@ usage: asnfinder [-h] -o ORG [-A USER_AGENT]
 ./asnfinder -o yahoo
 ./asnfinder -o yahoo -A 'Mozilla/5.0'
 ```
+
+# pegando asns e ips
+```sh
+./asnfinder -o yahoo -asns
+./asns -o yahoo -ips
+```

@@ -20,7 +20,7 @@ else:
         }
 
 url = f"https://bgp.he.net/search?search%5Bsearch%5D={org}&commit=Search"
-req = requests.get(url).text
+req = requests.get(url, headers=headers).text
 
 regex_as = "AS[0-9]+"
 regex_ips = r'\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}/{0,1}\d*'

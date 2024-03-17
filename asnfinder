@@ -66,3 +66,5 @@ elif asn:
 else:
         print("Error: use '-h' para visualizar o help da ferramenta")
         quit()
+
+quit()

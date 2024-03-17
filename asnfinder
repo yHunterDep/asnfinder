@@ -1,16 +1,24 @@
 #!/usr/bin/python3
 
-import argparse, requests, re
+import argparse, requests, socket, re
+from ipwhois import IPWhois
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-o", "--org", required=True, help="organização, ex: --org yahoo")
+parser.add_argument("-o", "--org", help="organização, ex: --org yahoo")
 parser.add_argument("-A", "--user_agent", help="coloque o user-agent (não obrigatório)")
+parser.add_argument("-d", "--domain", help="coloque um dominio")
+parser.add_argument("-asn", "--asn", help="coloque um asn, ex: AS7233")
 parser.add_argument("-asns", "--asns", help="o ASNFinder vai trazer apenas os ASNS", action="store_true")
 parser.add_argument("-ips", "--ips", help="o ASNFinder irá trazer apenas os IPs", action="store_true")
 args = parser.parse_args()
 
 org = args.org
+domain = args.domain
+asn = args.asn
 agent = args.user_agent
+
+regex_as = "AS[0-9]+"
+regex_ips = r'\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}/{0,1}\d*'
 
 if agent:
         headers = {"User-agent": agent}
@@ -19,20 +27,42 @@ else:
                 "User-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0"
         }
 
-url = f"https://bgp.he.net/search?search%5Bsearch%5D={org}&commit=Search"
-req = requests.get(url, headers=headers).text
+if org:
+        url = f"https://bgp.he.net/search?search%5Bsearch%5D={org}&commit=Search"
+        req = requests.get(url, headers=headers).text
 
-regex_as = "AS[0-9]+"
-regex_ips = r'\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}/{0,1}\d*'
-asns = re.findall(regex_as, req)
-asns = "\n".join(asns)
-ips = re.findall(regex_ips, req)
-ips = "\n".join(ips)
+        asns = re.findall(regex_as, req)
+        asns = "\n".join(asns)
+        ips = re.findall(regex_ips, req)
+        ips = "\n".join(ips)
 
-if args.asns:
-        print(asns)
-elif args.ips:
-        print(ips)
+        if args.asns:
+                print(asns)
+        elif args.ips:
+                print(ips)
+        else:
+                print(asns)
+                print(ips)
+
+elif domain:
+        ip = socket.gethostbyaddr(domain)[2][0]
+
+        ipwhois = IPWhois(ip)
+        result = ipwhois.lookup_rdap(depth=1)
+
+        asn = result["asn"]
+        asn_cidr = result["asn_cidr"]
+        asn_desc = result["asn_description"]
+        print(f"ASN: {asn}\nASN_CIDR: {asn_cidr}\nASN_ORG: {asn_desc}")
+
+elif asn:
+        if "AS" in asn.upper():
+                url = f"https://api.hackertarget.com/aslookup/?q={asn}"
+        else:
+                url = f"https://api.hackertarget.com/aslookup/?q=AS{asn}"
+
+        req = requests.get(url, headers=headers).text
+        print(req)
 else:
-        print(asns)
-        print(ips)
+        print("Error: use '-h' para visualizar o help da ferramenta")
+        quit()

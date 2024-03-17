@@ -7,7 +7,7 @@ ASNFinder é uma Ferramenta escrita em Python3 que busca por ASNS e IPS de uma o
 ```
 
 # Atualização
-Argumentos -asn e -ips
+Argumentos -asn e -ips<br>
 Argumento -d e -asn
 
 # Instalação

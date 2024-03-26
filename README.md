@@ -52,7 +52,7 @@ ASN_ORG: YAHOO-GQ1, US
 ```
 
 # Argument -asm
-<li>This command checks the ASN and org cidrs</li>
+This command checks the ASN and org cidrs
 ```sh
 ./asnfinder -asn AS7233
 

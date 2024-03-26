@@ -1,23 +1,23 @@
 # ASNFinder
-ASNFinder é uma Ferramenta escrita em Python3 que busca por ASNS e IPS de uma organização
+ASNFinder is a tool created in Python3 that searches for ASNS in domains and organizations.
 
 # Versão
 ```sh
 0.2
 ```
 
-# Atualização
+# Update
 Argumentos -asn e -ips<br>
 Argumento -d e -asn
 
-# Instalação
+# Instalation
 ```sh
 git clone https://github.com/yHunterDep/asnfinder
 cd asnfinder
 pip3 install -r requirements.txt
 chmod +x asnfinder
 ```
-# Help do ASNfinder
+# Help of ASNfinder
 ```sh
 ./asnfinder -h
 
@@ -35,14 +35,14 @@ options:
   -ips, --ips           o ASNFinder irá trazer apenas os IPs
 ```
 
-# Usando o ASNfinder
+# Basic of ASNfinder (-org)
 ```sh
 ./asnfinder -o yahoo
 ./asnfinder -o yahoo -A 'Mozilla/5.0'
 ```
 
-# Argumento -d (domínio)
-<l>Este comando pega o domínio e descobre o cidr, asn e org</l>
+# Argument -d (domain)
+<li>This command gets the domain and finds information like asns, org, cidr, etc...</li>
 ```sh
 ./asnfinder -d yahoo.com
 
@@ -51,8 +51,8 @@ ASN_CIDR: 98.137.11.0/24
 ASN_ORG: YAHOO-GQ1, US
 ```
 
-# Argumento -asn
-<l>Este comando verifica os cidrs do ASN e org</l>
+# Argument -asm
+<li>This command checks the ASN and org cidrs</li>
 ```sh
 ./asnfinder -asn AS7233
 
@@ -63,7 +63,7 @@ ASN_ORG: YAHOO-GQ1, US
 98.136.0.0/23
 ```
 
-# pegando ASNs e IPs
+# Catching ASNs and IPs
 ```sh
 ./asnfinder -o yahoo -asns
 ./asnfinder -o yahoo -ips

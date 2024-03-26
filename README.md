@@ -1,14 +1,14 @@
 # ASNFinder
 ASNFinder is a tool created in Python3 that searches for ASNS in domains and organizations.
 
-# Versão
+# Version
 ```sh
 0.2
 ```
 
 # Update
-Argumentos -asn e -ips<br>
-Argumento -d e -asn
+Arguments -asn and -ips<br>
+Arguments -d and -asn
 
 # Instalation
 ```sh
@@ -42,7 +42,7 @@ options:
 ```
 
 # Argument -d (domain)
-<li>This command gets the domain and finds information like asns, org, cidr, etc...</li>
+This command gets the domain and finds information like asns, org, cidr, etc...
 ```sh
 ./asnfinder -d yahoo.com
 

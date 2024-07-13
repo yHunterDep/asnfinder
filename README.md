@@ -3,12 +3,11 @@ ASNFinder is a tool created in Python3 that searches for ASNS in domains and org
 
 # Version
 ```sh
-0.2
+0.3
 ```
 
 # Update
-Arguments -asn and -ips<br>
-Arguments -d and -asn
+-asn mode update
 
 # Instalation
 ```sh

@@ -3,7 +3,7 @@
 import argparse, requests, socket, re
 from ipwhois import IPWhois
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description="ASNFinder é uma ferramente de reconhecimento, Versão 0.2")
 parser.add_argument("-o", "--org", help="organização, ex: --org yahoo")
 parser.add_argument("-A", "--user_agent", help="coloque o user-agent (não obrigatório)")
 parser.add_argument("-d", "--domain", help="coloque um dominio")
@@ -56,15 +56,14 @@ elif domain:
         print(f"ASN: {asn}\nASN_CIDR: {asn_cidr}\nASN_ORG: {asn_desc}")
 
 elif asn:
-        if "AS" in asn.upper():
-                url = f"https://api.hackertarget.com/aslookup/?q={asn}"
+        if "as" in asn.lower():
+                req = requests.get(f"https://bgp.he.net/{asn}#_prefixes").text
+                ips_results = re.findall(regex_ips, req)
+                ips_results = set(ips_results)
+                ips_results = "\n".join(ips_results)
+                print(ips_results)
         else:
-                url = f"https://api.hackertarget.com/aslookup/?q=AS{asn}"
-
-        req = requests.get(url, headers=headers).text
-        print(req)
+                print("Use AS no inicio do ASN para a consulta.")
 else:
-        print("Error: use '-h' para visualizar o help da ferramenta")
+        print("Error: use '-h' para visualizar o help da ferramenta.")
         quit()
-
-quit()

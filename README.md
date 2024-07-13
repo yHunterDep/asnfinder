@@ -50,16 +50,16 @@ ASN_CIDR: 98.137.11.0/24
 ASN_ORG: YAHOO-GQ1, US
 ```
 
-# Argument -asm
+# Argument -asn
 This command checks the ASN and org cidrs
 ```sh
-./asnfinder -asn AS7233
+./asnfinder -asn AS40342
 
-"7233","YAHOO-, US"
-2001:4998:ef60::/48
-2001:4998:ef61::/48
-209.131.48.0/23
-98.136.0.0/23
+199.47.138.0/23
+104.200.221.0/24
+104.200.218.0/24
+8.40.122.0/24
+199.47.137.0/24
 ```
 
 # Catching ASNs and IPs

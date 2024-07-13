@@ -3,7 +3,7 @@
 import argparse, requests, socket, re
 from ipwhois import IPWhois
 
-parser = argparse.ArgumentParser(description="ASNFinder é uma ferramente de reconhecimento, Versão 0.2")
+parser = argparse.ArgumentParser(description="ASNFinder é uma ferramente de reconhecimento, Versão 0.3")
 parser.add_argument("-o", "--org", help="organização, ex: --org yahoo")
 parser.add_argument("-A", "--user_agent", help="coloque o user-agent (não obrigatório)")
 parser.add_argument("-d", "--domain", help="coloque um dominio")

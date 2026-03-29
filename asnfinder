@@ -45,25 +45,23 @@ if org:
                 print(ips)
 
 elif domain:
-        ip = socket.gethostbyaddr(domain)[2][0]
+        ip = socket.gethostbyname(domain)
 
-        ipwhois = IPWhois(ip)
-        result = ipwhois.lookup_rdap(depth=1)
-
-        asn = result["asn"]
-        asn_cidr = result["asn_cidr"]
-        asn_desc = result["asn_description"]
-        print(f"ASN: {asn}\nASN_CIDR: {asn_cidr}\nASN_ORG: {asn_desc}")
+        req_json = requests.get(f"https://freeapi.dnslytics.net/v1/ip2asn/{ip}").json()
+        asn = req_json["asn"]
+        asn_cidr = req_json["cidr"]
+        asn_org = req_json["shortname"]
+        print(f"ASN: {asn}\nCIDR: {asn_cidr}\nORG: {asn_org}")
 
 elif asn:
-        if "as" in asn.lower():
-                req = requests.get(f"https://bgp.he.net/{asn}#_prefixes").text
-                ips_results = re.findall(regex_ips, req)
-                ips_results = set(ips_results)
-                ips_results = "\n".join(ips_results)
-                print(ips_results)
-        else:
-                print("Use AS no inicio do ASN para a consulta.")
+        if not "as" in asn.lower():
+                asn = "AS"+asn
+
+        req = requests.get(f"https://bgp.he.net/{asn}#_prefixes").text
+        ips_results = re.findall(regex_ips, req)
+        ips_results = set(ips_results)
+        ips_results = "\n".join(ips_results)
+        print(ips_results)
 else:
         print("Error: use '-h' para visualizar o help da ferramenta.")
         quit()
